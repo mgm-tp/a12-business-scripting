@@ -1,0 +1,56 @@
+{
+	"name": "@com.mgmtp.a12.scripting/business-scripting-devtools",
+	"version": "0.14.1",
+	"description": "Build tooling for A12 Business Scripting consumers",
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		},
+		"./esbuild": {
+			"types": "./dist/esbuild.d.ts",
+			"import": "./dist/esbuild.js"
+		}
+	},
+	"scripts": {
+		"compile": "tsc --build",
+		"build": "npm run compile",
+		"build.watch": "tsc --build --watch",
+		"lint": "eslint .",
+		"format": "eslint . --fix",
+		"clean": "tsc --build --clean",
+		"test": "vitest run"
+	},
+	"files": [
+		"dist/",
+		"LICENSE",
+		"NOTICE",
+		"THIRD_PARTY_NOTICES",
+		"licenses/"
+	],
+	"author": "mgm technology partners",
+	"license": "(EUPL-1.2 OR LicenseRef-commercial)",
+	"dependencies": {
+		"vlq": "^2.0.4"
+	},
+	"peerDependencies": {
+		"esbuild": "*"
+	},
+	"peerDependenciesMeta": {
+		"esbuild": {
+			"optional": true
+		}
+	},
+	"devDependencies": {
+		"@com.mgmtp.a12.devtools/eslint-config": "^3.1.2",
+		"@types/node": "^24.2.0",
+		"esbuild": "^0.27.4",
+		"eslint": "^9.32.0",
+		"eslint-plugin-notice": "^1.0.0",
+		"ts-loader": "^9.0.0",
+		"typescript": "^5.9.2",
+		"vitest": "^4.1.0",
+		"webpack": "^5.0.0"
+	}
+}

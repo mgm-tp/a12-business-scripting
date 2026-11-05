@@ -1,0 +1,42 @@
+{
+	"name": "@com.mgmtp.a12.scripting/business-scripting-eslint-config",
+	"version": "0.14.1",
+	"description": "ESLint config for A12 Business Scripting authors (scripters)",
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
+	},
+	"scripts": {
+		"compile": "tsc --build",
+		"build": "npm run compile",
+		"build.watch": "node esbuild.build.js --watch",
+		"lint": "eslint .",
+		"format": "eslint . --fix",
+		"clean": "tsc --build --clean",
+		"test": "vitest run"
+	},
+	"files": [
+		"dist/",
+		"LICENSE",
+		"NOTICE",
+		"THIRD_PARTY_NOTICES",
+		"licenses/"
+	],
+	"author": "mgm technology partners",
+	"license": "(EUPL-1.2 OR LicenseRef-commercial)",
+	"peerDependencies": {
+		"@com.mgmtp.a12.devtools/eslint-config": "^3.1.2",
+		"eslint": "^9.0.0"
+	},
+	"devDependencies": {
+		"@com.mgmtp.a12.devtools/eslint-config": "^3.1.2",
+		"@types/node": "^22.0.0",
+		"eslint": "^9.32.0",
+		"eslint-plugin-notice": "^1.0.0",
+		"typescript": "^5.9.2",
+		"vitest": "^4.1.0"
+	}
+}

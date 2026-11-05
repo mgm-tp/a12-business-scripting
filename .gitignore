@@ -1,0 +1,16 @@
+# Tools
+.idea
+**/.idea
+*.iml
+.fleet
+.gradle
+
+# Build
+**/build
+**/bin
+*.log
+**/.env
+**/.env.local
+**/node_modules
+**/tsconfig.tsbuildinfo
+

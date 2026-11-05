@@ -1,0 +1,61 @@
+{
+	"name": "@com.mgmtp.a12.scripting/business-scripting-core",
+	"version": "0.14.1",
+	"description": "A12 Business Scripting API for Citizen Developers",
+	"main": "index.ts",
+	"type": "module",
+	"exports": {
+		".": {
+			"import": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		},
+		"./testing": {
+			"import": "./dist/testing/index.js",
+			"types": "./dist/testing/index.d.ts"
+		},
+		"./testing/vitest-setup": {
+			"import": "./dist/testing/vitest-setup.js",
+			"types": "./dist/testing/vitest-setup.d.ts"
+		}
+	},
+	"scripts": {
+		"compile": "tsc --build",
+		"build": "npm run compile",
+		"build.watch": "tsc --build --watch",
+		"lint": "eslint .",
+		"format": "eslint . --fix",
+		"clean": "tsc --build --clean",
+		"api-extract": "api-extractor run --local",
+		"test": "vitest run"
+	},
+	"files": [
+		"dist/",
+		"LICENSE",
+		"NOTICE",
+		"THIRD_PARTY_NOTICES",
+		"licenses/"
+	],
+	"author": "mgm technology partners",
+	"license": "(EUPL-1.2 OR LicenseRef-commercial)",
+	"dependencies": {
+		"@com.mgmtp.a12.dataservices/dataservices-access": "39.1.1",
+		"@com.mgmtp.a12.kernel/kernel-md-facade": "31.3.1",
+		"@com.mgmtp.a12.utils/utils-connector": "9.0.4",
+		"@com.mgmtp.a12.utils/utils-logging": "7.1.0",
+		"chai": "^5.1.0",
+		"chai-as-promised": "^8.0.0",
+		"uuid": "^11.1.0"
+	},
+	"devDependencies": {
+		"@com.mgmtp.a12.devtools/eslint-config": "^3.1.2",
+		"@microsoft/api-extractor": "^7.55.2",
+		"@types/chai": "^5.0.0",
+		"@types/chai-as-promised": "^8.0.0",
+		"@types/node": "^25.2.3",
+		"eslint": "^9.32.0",
+		"eslint-plugin-notice": "^1.0.0",
+		"ts-node": "^10.9.2",
+		"typescript": "^6.0.3",
+		"vitest": "^4.1.0"
+	}
+}

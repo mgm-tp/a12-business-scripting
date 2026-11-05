@@ -1,0 +1,16 @@
+.idea
+.fleet
+.gradle
+.venv
+**/.venv
+**/.idea
+*.iml
+**/build
+*.log
+**/node_modules
+**/org.graalvm.python.vfs
+**/GRAALPY-VFS
+**/dist
+temp/
+tsconfig.tsbuildinfo
+tsdoc-metadata.json

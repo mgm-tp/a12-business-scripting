@@ -1,0 +1,161 @@
+/*
+ * SPDX-License-Identifier: EUPL-1.2 OR LicenseRef-commercial
+ *
+ * Copyright (c) 2012-2026 mgm technology partners GmbH
+ *
+ * Dual License
+ * ------------
+ * This source file is part of the mgm A12 Platform and available under
+ * a choice of two different licenses:
+ *
+ * 1. Open-Source License – EUPL v1.2
+ *    You may redistribute and/or modify this file under the terms of the
+ *    European Union Public License, version 1.2 - see https://eupl.eu/.
+ *
+ * 2. Commercial License
+ *    Alternatively, you may obtain a commercial license from
+ *    mgm technology partners GmbH, that permits use of this software
+ *    under different terms (including support and maintenance services).
+ *
+ *    Please contact a12-license@mgm-tp.com for more information.
+ *
+ * You must select and comply with exactly one of the above license options.
+ *
+ * Warranty Disclaimer (applies to either option)
+ * ----------------------------------------------
+ * THIS SOFTWARE IS PROVIDED "AS IS" AND WITHOUT WARRANTY OF ANY KIND,
+ * WHETHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NON-INFRINGEMENT, EXCEPT WHERE SUCH DISCLAIMERS ARE HELD TO BE
+ * LEGALLY INVALID. SEE THE RESPECTIVE LICENSE TEXT FOR DETAILS.
+ */
+
+import { JavaConstraint } from './ConstraintOperators.js';
+
+/**
+ * Paging definition for a QueryRoot.
+ * @see com.mgmtp.a12.dataservices.query.Paging
+ */
+export type Paging = object;
+
+/**
+ * Builder for {@link Paging}.
+ */
+export interface PagingBuilder {
+    pageNumber(pageNumber: number): PagingBuilder;
+    pageSize(pageSize: number): PagingBuilder;
+    build(): Paging;
+}
+
+/**
+ * Java class proxy for Paging, as returned by {@link Java.type}.
+ * @see com.mgmtp.a12.dataservices.query.Paging
+ */
+export interface PagingJavaClass {
+    builder(): PagingBuilder;
+}
+
+/**
+ * Sort direction for a {@link DirectFieldOrder}.
+ * @see com.mgmtp.a12.dataservices.query.DirectFieldOrder.Direction
+ */
+export type OrderDirection = 'ASC' | 'DESC';
+
+/**
+ * Null handling strategy for a {@link DirectFieldOrder}.
+ * @see com.mgmtp.a12.dataservices.query.DirectFieldOrder.NullHandling
+ */
+export type OrderNullHandling = 'NATIVE' | 'NULLS_FIRST' | 'NULLS_LAST';
+
+/**
+ * Opaque type representing any sort order entry (DirectFieldOrder or RelationshipOrder).
+ * @see com.mgmtp.a12.dataservices.query.Order
+ */
+export type Order = object;
+
+/**
+ * Java class proxy for DirectFieldOrder, as returned by {@link Java.type}.
+ * Sorts by a field directly on the queried document.
+ * @see com.mgmtp.a12.dataservices.query.DirectFieldOrder
+ */
+export interface DirectFieldOrderJavaClass {
+     
+    new(field: string): Order;
+     
+    new(field: string, direction: OrderDirection): Order;
+     
+    new(field: string, direction: OrderDirection, ignoreCase: boolean): Order;
+     
+    new(field: string, direction: OrderDirection, ignoreCase: boolean, nullHandling: OrderNullHandling): Order;
+    Direction: { ASC: OrderDirection; DESC: OrderDirection };
+    NullHandling: { NATIVE: OrderNullHandling; NULLS_FIRST: OrderNullHandling; NULLS_LAST: OrderNullHandling };
+}
+
+/**
+ * Java class proxy for RelationshipOrder, as returned by {@link Java.type}.
+ * Sorts by traversing a to-1 relationship; nest {@link DirectFieldOrderJavaClass} as the terminal sortBy.
+ * @see com.mgmtp.a12.dataservices.query.RelationshipOrder
+ */
+export interface RelationshipOrderJavaClass {
+     
+    new(relationshipModel: string, targetRole: string, sortBy: Order): Order;
+}
+
+/**
+ * Link traversal definition for a QueryRoot.
+ * @see com.mgmtp.a12.dataservices.query.topology.QueryLink
+ */
+export type QueryLink = object;
+
+/**
+ * Builder for {@link QueryLink}.
+ */
+export interface QueryLinkBuilder {
+    relationshipModel(relationshipModel: string): QueryLinkBuilder;
+    targetRole(targetRole: string): QueryLinkBuilder;
+    constraint(constraint: JavaConstraint): QueryLinkBuilder;
+    linkDocumentConstraint(linkDocumentConstraint: JavaConstraint): QueryLinkBuilder;
+    linkDocumentFields(linkDocumentFields: string[]): QueryLinkBuilder;
+    maxDepth(maxDepth: number): QueryLinkBuilder;
+    maxLinksSize(maxLinksSize: number): QueryLinkBuilder;
+    build(): QueryLink;
+}
+
+/**
+ * Java class proxy for QueryLink, as returned by {@link Java.type}.
+ * @see com.mgmtp.a12.dataservices.query.topology.QueryLink
+ */
+export interface QueryLinkJavaClass {
+    builder(): QueryLinkBuilder;
+}
+
+/**
+ * The primary structure for defining queries against a document model.
+ * Opaque: instances are only ever produced by {@link QueryRootBuilder} and handed to
+ * {@link QueryService.query}, never inspected from TypeScript — the same treatment as
+ * {@link Paging} and {@link QueryLink}. Declare the accessors you need if that changes.
+ * @see com.mgmtp.a12.dataservices.query.topology.QueryRoot
+ */
+export type QueryRoot = object;
+
+/**
+ * Builder for {@link QueryRoot}, generated by Lombok @SuperBuilder.
+ */
+export interface QueryRootBuilder {
+    targetDocumentModel(targetDocumentModel: string): QueryRootBuilder;
+    projectionName(projectionName: string): QueryRootBuilder;
+    paging(paging: Paging): QueryRootBuilder;
+    sort(sort: Order[]): QueryRootBuilder;
+    link(queryLink: QueryLink): QueryRootBuilder;
+    constraint(constraint: JavaConstraint): QueryRootBuilder;
+    fields(fields: unknown): QueryRootBuilder;
+    build(): QueryRoot;
+}
+
+/**
+ * Java class proxy for QueryRoot, as returned by {@link Java.type}.
+ * @see com.mgmtp.a12.dataservices.query.topology.QueryRoot
+ */
+export interface QueryRootJavaClass {
+    builder(): QueryRootBuilder;
+}
